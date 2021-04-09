@@ -103,6 +103,7 @@ class wbs_acf_plugin_calendar {
 		
 		
 		// include
+		include_once('includes/helper.php');
 		include_once('fields/class-wbs-acf-field-calendar-v' . $version . '.php');
 		include_once('fields/class-wbs-acf-field-form-v' . $version . '.php');
 	}

@@ -140,16 +140,8 @@ class wbs_acf_field_form extends acf_field {
 		*/
 		$forms = wpbs_get_forms();
 
-		?>
-		<select name="<?php echo esc_attr($field['name']) ?>" >
-		<option value="none">Select a form</option>
-		<?php foreach($forms as $form) :?>
-		<option value="<?= $form->get('id')?>" <?= intval($field['value']) === $form->get('id') ? 'selected="selected"' : '' ?>><?= $form->get('name')?></option>
-
-		<?php endforeach; ?>
-		</select>
+		render_wbs($field, $forms, "Form");
 		
-		<?php
 	}
 	
 		

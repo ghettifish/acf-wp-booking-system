@@ -140,16 +140,8 @@ class wbs_acf_field_calendar extends acf_field {
 		*/
 		$calendars = wpbs_get_calendars();
 
-		?>
-		<select name="<?php echo esc_attr($field['name']) ?>" >
-		<option value="none">Select a calendar</option>
-		<?php foreach($calendars as $calendar) :?>
-		<option value="<?= $calendar->get('id')?>" <?= intval($field['value']) === $calendar->get('id') ? 'selected="selected"' : '' ?>><?= $calendar->get('name')?></option>
-
-		<?php endforeach; ?>
-		</select>
-		
-		<?php
+		render_wbs($field, $calendars, "Calendar");
+	
 	}
 	
 		
