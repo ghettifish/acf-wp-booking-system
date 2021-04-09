@@ -22,7 +22,7 @@ function render_wbs($field, $items, $name)
 
   <?php endif; ?>
 
-  <a href="/wp-admin/admin.php?page=wpbs-<?= sanitize_title($name) ?>s&subpage=add-<?= sanitize_title($name) ?>">Add new <?= $name ?></a>
+  <a href="/wp-admin/admin.php?page=wpbs-<?= sanitize_title($name) ?>s&subpage=add-<?= sanitize_title($name) ?>" target="_blank">Add new <?= $name ?></a>
 
 <?php
 }

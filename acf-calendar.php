@@ -14,10 +14,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 // exit if accessed directly
 if( ! defined( 'ABSPATH' ) ) exit;
 
-
+function is_wpbs_active(){
+	return is_plugin_active( 'wp-booking-system/wp-booking-system.php' ) || is_plugin_active( 'wp-booking-system-premium/index.php' );
+}
 // Handle WP Booking System being deactivated
 add_action( 'admin_init', function() {
-	if ( is_admin() && current_user_can( 'activate_plugins' ) &&  !is_plugin_active( 'wp-booking-system/wp-booking-system.php' ) ) {
+	if ( is_admin() && current_user_can( 'activate_plugins' ) && !is_wpbs_active() ) {
 			add_action( 'admin_notices', function(){?>
 			<div class="error"><p>Advanced Custom Fields: WP Booking System plugin requires WP Booking System to be installed and active.</p></div>
 			<?php } );
@@ -33,7 +35,7 @@ add_action( 'admin_init', function() {
 // Handle the missing plugin
 register_activation_hook( __FILE__, function(){
 
-	if ( ! is_plugin_active( 'wp-booking-system/wp-booking-system.php' ) and current_user_can( 'activate_plugins' ) ) {
+	if ( !is_wpbs_active() and current_user_can( 'activate_plugins' ) ) {
 			// Stop activation redirect and show error
 			wp_die('Sorry, but this plugin requires the WP Booking System to be installed and active. <br><a href="' . admin_url( 'plugins.php' ) . '">&laquo; Return to Plugins</a>');
 	}
